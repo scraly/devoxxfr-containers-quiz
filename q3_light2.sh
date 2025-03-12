@@ -22,7 +22,7 @@ cp -r ubi-micro9315-oci /tmp
 #pe 'tree /tmp/ubi-micro9315-dv2 # Docker'
 #pe 'tree /tmp/ubi-micro9315-oci # OCI'
 
-p 'Difference between manifests'
+p 'Difference des manifests'
 pe 'cat /tmp/ubi-micro9315-dv2/manifest.json | jq # Docker'
 #pe 'cat /tmp/ubi-micro9315-oci/index.json | jq # OCI Index'
 
@@ -46,7 +46,7 @@ pe 'cat helm-oci/blobs/sha256/b745d1324bc4b1b774bb11445e98cfb8cdd5b75288c1efc1f2
 
 pe 'echo toto > llm.txt'
 
-p 'oras push --plain-http localhost:5000/hello-artifact:v1 --artifact-type application/vnd.kubecon.london.config llm.txt:text/plain'
+p 'oras push --plain-http localhost:5000/hello-artifact:v1 --artifact-type application/vnd.devoxx.france.config llm.txt:text/plain'
 cat oras_push.txt
 
 #p 'skopeo inspect docker://localhost:5000/hello-artifact:v1 --tls-verify=false --raw | jq'
@@ -58,4 +58,4 @@ cd ..
 rm -fr /tmp/ubi-micro9315-oci
 rm -fr /tmp/ubi-micro9315-dv2
 
-p "Done !"
+p "Fini !"

@@ -12,35 +12,26 @@ clear
 
 # QUESTION 4
 
-#p "Q4. What happens when I push an image to a registry?"
+#p "Q4. Que se passe-t'il quand je push une image dans un registry ?"
 cd gophers-api
 
-# Login to the MPR
-p 'docker login -u kubecon 79352h8v.c1.de1.container-registry.ovh.net'
+p 'docker login -u devoxx-france 79352h8v.c1.de1.container-registry.ovh.net'
 docker login -u sunnytech -p SunnyTech2024 79352h8v.c1.de1.container-registry.ovh.net
-
-# Build the image
 pe 'docker build -t 79352h8v.c1.de1.container-registry.ovh.net/public/gophers-api:latest .'
-
-# Check the image size locally
 pe 'docker image ls 79352h8v.c1.de1.container-registry.ovh.net/public/gophers-api:latest'
-
-# Push the image in an OVHcloud Private Registry
 pe 'docker push 79352h8v.c1.de1.container-registry.ovh.net/public/gophers-api:latest'
-
-# Check the image size on MPR and DockerHub
-p 'Checking on OVHcloud private registry: 79352h8v.c1.de1.container-registry.ovh.net'
+p 'Vérification sur le OVHcloud private registry: 79352h8v.c1.de1.container-registry.ovh.net'
 # 22.6MB en local → 10.82MiB sur OVHcloud Managed Private Registry / Harbor ;-)
-p 'Checking on Docker Hub: https://hub.docker.com/r/scraly/gophers-api/tags'
+p 'Vérification sur le Docker Hub: https://hub.docker.com/r/scraly/gophers-api/tags'
 
-# zstd recommened for large images, IA!
-p 'Tips with Podman: changing compression mode during the push'
+# zstd conseillé pour les grosses images, IA !
+p 'Tips avec Podman: on peut changer le mode de compression pendant le push'
 p 'podman push docker.io/scraly/gophers-api:podman-zstd --compression-format=zstd'
 
-p "Tips: changing compression mode with Docker too"
+p "Tips: on peut changer le mode de compression avec Docker aussi"
 p "docker buildx build --output type=image,name=scraly/gophers-api:docker-zstd,oci-mediatypes=true,compression=zstd,compression-level=3,force-compression=true,push=true --push ."
 p "docker manifest inspect -v scraly/gophers-api:docker-zstd | grep 'application/vnd.oci.image.layer.v1.tar+zstd'"
 cat ../q4/gophers-api-docker-zstd-manifest.json | grep 'application/vnd.oci.image.layer.v1.tar+zstd'
 
 cd
-p "Done !"
+p "Fini !"

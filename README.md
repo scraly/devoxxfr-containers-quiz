@@ -1,4 +1,4 @@
-# kubecon-containers-quiz
+# devoxxfr-containers-quiz
 
 ## Pre-requisites
 
